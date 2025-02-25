@@ -15,5 +15,8 @@ export class Jogadore {
     @Column()
     tagLine : string
 
+    // @Column()
+    // vitorias : number
+
 
 }

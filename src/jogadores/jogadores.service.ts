@@ -22,7 +22,9 @@ export class JogadoresService {
 
     try{
       const dadosRiot = await this.riotService.dadosJogador(tagLine,gameName); 
-
+      if(await this.findOne(dadosRiot.puuid) != null){
+        return "usuário já existe";
+      }
       await this.jogadoreRepository.save(dadosRiot);
       return dadosRiot;
     }catch(Error){
@@ -31,15 +33,16 @@ export class JogadoresService {
   }
 
   findAll() {
-    return `This action returns all jogadores`;
+    return this.jogadoreRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} jogadore`;
+  findOne(puuid: string) {
+    return this.jogadoreRepository.findOneBy({puuid});
   }
 
-  update(id: number, updateJogadoreDto: UpdateJogadoreDto) {
-    return `This action updates a #${id} jogadore`;
+
+  update(puuid :string , updateJogadoreDto: UpdateJogadoreDto) {
+    return `This action updates a #${puuid} jogadore`;
   }
 
   remove(id: number) {

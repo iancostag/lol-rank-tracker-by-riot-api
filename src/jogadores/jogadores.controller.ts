@@ -15,7 +15,6 @@ export class JogadoresController {
     return this.jogadoresService.criarPelaRiotApi(data.gameName,data.tagLine);
   }
 
-  @Post('criar')
 
   @Get()  
   findAll() {
@@ -23,13 +22,13 @@ export class JogadoresController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.jogadoresService.findOne(+id);
+  findOne(@Param('id') puuid: string) {
+    return this.jogadoresService.findOne(puuid);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateJogadoreDto: UpdateJogadoreDto) {
-    return this.jogadoresService.update(+id, updateJogadoreDto);
+  update(@Param('id') puuid: string, @Body() updateJogadoreDto: UpdateJogadoreDto) {
+    return this.jogadoresService.update(puuid, updateJogadoreDto);
   }
 
   @Delete(':id')
