@@ -1,17 +1,18 @@
 import { Injectable } from '@nestjs/common';
+import { CreateJogadoreDto } from 'src/jogadores/dto/create-jogadore.dto';
 import axios from 'axios';
 
 
 @Injectable()
 export class RiotApiService {
-  private readonly chave = "RGAPI-05aae432-0680-4192-8d10-62bbdf68a436";
+  private readonly chave = "RGAPI-2fc39f75-c385-4434-b615-64f3754b8fb1";
 
   constructor() {
     console.log('Chave da API:', this.chave); // Log para verificar a chave da API
   }
 
-  async dadosJogador(gameName: string, tagLine: string): Promise<any> {
-    const URL = `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`;
+  async dadosJogador(jogadorDTO : CreateJogadoreDto): Promise<any> {
+    const URL = `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${jogadorDTO.gameName}/${jogadorDTO.tagLine}`;
     console.log("URL:", URL);
   
     try {

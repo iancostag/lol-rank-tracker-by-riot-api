@@ -10,9 +10,9 @@ export class JogadoresController {
 
   @Post('criar-por-riot')
   async criarPelaRiotApi(
-    @Body() data: {gameName:string, tagLine:string},
+    @Body() jogadorDTO : CreateJogadoreDto,
   ) :Promise<Jogadore> {
-    return this.jogadoresService.criarPelaRiotApi(data.gameName,data.tagLine);
+    return this.jogadoresService.criarPelaRiotApi(jogadorDTO);
   }
 
 

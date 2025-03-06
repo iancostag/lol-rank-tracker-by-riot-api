@@ -18,11 +18,12 @@ export class JogadoresService {
 
   private readonly logger = new Logger(JogadoresService.name);
   
-  async criarPelaRiotApi(tagLine :string, gameName:string){
+  async criarPelaRiotApi(jogadorDTO : CreateJogadoreDto){
 
     try{
-      const dadosRiot = await this.riotService.dadosJogador(tagLine,gameName); 
+      const dadosRiot = await this.riotService.dadosJogador(jogadorDTO); 
       if(await this.findOne(dadosRiot.puuid) != null){
+        this.logger.log(dadosRiot);
         return "usuário já existe";
       }
       await this.jogadoreRepository.save(dadosRiot);
